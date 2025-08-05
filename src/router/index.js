@@ -20,7 +20,7 @@ const router = createRouter({
 // Protezione delle rotte
 router.beforeEach(async (to, from, next) => {
   if (to.meta.requiresAuth) {
-    const { data: { user } } = await supabase.auth.getUser()
+    const { data: { user } } = await supabase.auth.getSession()
     if (!user) {
       next('/login')
     } else {

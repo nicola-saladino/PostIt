@@ -252,6 +252,7 @@ onMounted(async () => {
   await loadPostits()
   loading.value = false
 })
+
 </script>
 
 <template>
