@@ -3,6 +3,10 @@
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabase.js' // Percorso aggiornalo se serve
 
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
 const columns = ref([])
 
 
@@ -251,6 +255,11 @@ onMounted(async () => {
   await loadColumns()
   await loadPostits()
   loading.value = false
+})
+
+onMounted(async () => {
+  await supabase.auth.signOut()  // pulisce sessione salvata
+  router.push('/login')          // vai al login
 })
 
 </script>
