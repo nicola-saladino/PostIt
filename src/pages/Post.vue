@@ -61,6 +61,7 @@ const loadPostits = async () => {
   }
 }
 
+
 const savePostit = async (postit) => {
   try {
     // Recupera l'utente autenticato
@@ -251,16 +252,14 @@ const handleTitleBlur = async (postit) => {
   await savePostit(postit)
 }
 
+
+
 onMounted(async () => {
   await loadColumns()
   await loadPostits()
   loading.value = false
 })
 
-onMounted(async () => {
-  await supabase.auth.signOut()  // pulisce sessione salvata
-  router.push('/login')          // vai al login
-})
 
 </script>
 
