@@ -148,6 +148,10 @@ isLogin.value = true
   color: #222222;
 }
 
+input{
+    color: #222222;
+}
+
 
 
 h2 {
@@ -180,10 +184,7 @@ button {
   color: black;
   border: none;
   border-radius: 8px;
-  font-size: 24px; /* aumentato */
-  font-weight: bold;
-  font-family: "Indie Flower", cursive;
-  text-transform: uppercase;
+  font-size: 20px; /* aumentato */
   cursor: pointer;
   transition: background 0.3s;
 }
@@ -214,9 +215,7 @@ button[disabled] {
   font-size: 18px; /* aumentato */
   transition: background 0.3s;
     font-weight: bold;
-  font-family: "Indie Flower", cursive;
-  text-transform: uppercase;
-  
+
 }
 
 
