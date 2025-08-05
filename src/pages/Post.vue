@@ -252,6 +252,18 @@ const handleTitleBlur = async (postit) => {
   await savePostit(postit)
 }
 
+const handleLogout = async () => {
+  try {
+    loading.value = true
+    await supabase.auth.signOut()
+    router.push('/login')
+  } catch (error) {
+    console.error('Errore durante il logout:', error)
+    error.value = 'Errore durante il logout'
+  } finally {
+    loading.value = false
+  }
+}
 
 
 onMounted(async () => {
@@ -281,6 +293,10 @@ onMounted(async () => {
     </div>
 
     <button @click="addPostit" class="fab" v-if="!loading">📌</button>
+
+    <button @click="handleLogout" class="logout-btn" v-if="!loading" title="Logout">
+  🚪
+    </button>
 
     <div
       v-for="postit in postits"
@@ -506,6 +522,42 @@ onMounted(async () => {
 }
 .fab:hover {
   transform: scale(1.1);
+}
+
+.logout-btn {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ef476f, #d63755);
+  color: white;
+  font-size: 20px;
+  box-shadow: 0 4px 8px rgba(239, 71, 111, 0.3);
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(239, 71, 111, 0.4);
+  background: linear-gradient(135deg, #d63755, #c21e42);
+}
+
+.logout-btn:active {
+  transform: scale(0.95);
+}
+
+.logout-btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .note-title {
